@@ -8,16 +8,19 @@ html
     meta http-equiv="cleartype" content="on"
     meta name="HandheldFriendly" content="True"
     meta name="MobileOptimized" content="320"
+    meta name="format-detection" content="telephone=no"
     - if content_for?(:title)
       = yield(:title)
     - else
-      title p8020
+      title 八十二十 - 有价值的文章分享工具
     = csrf_meta_tags
     = action_cable_meta_tag
     = content_for?(:head) ? yield(:head) : ''
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = favicon_link_tag "favicon.png"
+    = javascript_include_tag 'ga', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"
+
   body
     main
       .container
