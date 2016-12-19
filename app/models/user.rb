@@ -7,11 +7,11 @@ class User < ApplicationRecord
       user.uid = auth['uid']
       if auth['info']
          user.name = auth['info']['name'] || auth['info']['nickname'] || ''
-         user.avatar = auth['info']['headimgurl']
-         user.sex = auth['info']['sex']
-         user.province = auth['info']['province']
-         user.city = auth['info']['city']
-         user.country = auth['info']['country']
+        #  user.avatar = auth['info']['headimgurl']
+        #  user.sex = auth['info']['sex']
+        #  user.province = auth['info']['province']
+        #  user.city = auth['info']['city']
+        #  user.country = auth['info']['country']
       end
     end
   end
@@ -20,11 +20,11 @@ class User < ApplicationRecord
     user = self
     if auth['info']
       user.name = auth['info']['name'] || auth['info']['nickname'] || ''
-      user.avatar = auth['info']['headimgurl']
-      user.sex = auth['info']['sex']
-      user.province = auth['info']['province']
-      user.city = auth['info']['city']
-      user.country = auth['info']['country']
+      # user.avatar = auth['info']['headimgurl']
+      # user.sex = auth['info']['sex']
+      # user.province = auth['info']['province']
+      # user.city = auth['info']['city']
+      # user.country = auth['info']['country']
       user.save(validate: false)
     end
   end

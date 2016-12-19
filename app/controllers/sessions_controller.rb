@@ -5,8 +5,9 @@ class SessionsController < ApplicationController
     # logger.debug auth
     # unionid = auth.extra.raw_info.unionid
     # raise "No unionid found, please check omniauth configure!" if unionid.blank?
-    raise :test
-    user = User.where(uid: uid.to_s).first
+    # raise :test
+
+    user = User.where(uid: auth['uid']).first
     if user.present?
       user.update_user_info(auth)
     else
