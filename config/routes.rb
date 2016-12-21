@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   mount StatusPage::Engine => '/'
   #mount ActionCable.server => '/cable'
   root to: 'visitors#index'
+
+  get '/auth/:provider/callback' => 'sessions#create'
 end

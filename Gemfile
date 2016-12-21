@@ -34,6 +34,8 @@ gem 'browser_warrior'
 gem 'redis-namespace'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra', require: false
+gem 'omniauth'
+gem 'omniauth-wechat-oauth2'
 gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'mina', '0.3.8', require: false
