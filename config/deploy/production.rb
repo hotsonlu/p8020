@@ -1,5 +1,5 @@
 set :domain, 'weixin.shenzhenlist.com'
 set :deploy_to, '/data/www/p8020'
-set :repository,  'git@github.com:xx/xxx.git'
+set :repository,  'git@github.com:hotsonlu/p8020.git'
 set :branch, 'master'
 set :user, 'orange'
