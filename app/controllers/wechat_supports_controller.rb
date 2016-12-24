@@ -1,7 +1,7 @@
-require 'digest/sha1’
+require "digest/sha1"
 
 class WechatSupportsController < ApplicationController
-  @@token = 'shekou'
+  @@token = "shekou"
 
   def auth_wechat
     signature = params[:signature]
