@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    logger.info("session#failure #{params[:message]}")
+    logger.info("session#failure #{params.to_yaml}")
     redirect_to root_path
   end
 end
