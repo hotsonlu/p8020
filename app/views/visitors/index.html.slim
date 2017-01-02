@@ -1,4 +1,9 @@
 .container.text-center
+  - if current_user.blank?
+    p
+      = link_to '/auth/wechat', '微信登录'
+  - else
+    p 你已登录, #{current_user.name}
   h1 Hello World
   hr
   h3 You are roading on Rails...
