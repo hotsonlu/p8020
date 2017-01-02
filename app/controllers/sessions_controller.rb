@@ -17,4 +17,9 @@ class SessionsController < ApplicationController
     login_as(user)
     redirect_to root_path
   end
+
+  def failure
+    logger.info("session#failure #{params[:message]}")
+    redirect_to root_path
+  end
 end

@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
 
   get '/auth/:provider/callback' => 'sessions#create'
-
+  get '/auth/failure' => 'sessions#failure'
 end
