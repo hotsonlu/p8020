@@ -1,4 +1,24 @@
 class User < ApplicationRecord
+  enum role: [:reader, :writer, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
+  has_many :writer_posts, class_name: 'Post', foreign_key: 'writer_id'
+
+  def set_default_role
+    if User.count == 0
+      self.role ||= :admin
+    else
+      self.role ||= :reader
+    end
+  end
+
+  def admin?
+    self.role.to_sym == :admin
+  end
+
+  def writer?
+    admin? || self.role.to_sym == :writer
+  end
 
 
   def self.create_with_wechat(auth)

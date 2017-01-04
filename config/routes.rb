@@ -5,6 +5,16 @@ Rails.application.routes.draw do
   # get '/test/wechat' => 'wechat_supports#auth_wechat'
   # writer your routes here
 
+  namespace :wechat do
+    namespace :writer do
+      resources :posts
+    end
+
+    namespace :reader do
+      resources :posts
+    end
+  end
+
   mount Sidekiq::Web => '/sidekiq'
   mount StatusPage::Engine => '/'
   #mount ActionCable.server => '/cable'
