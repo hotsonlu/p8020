@@ -1,0 +1,16 @@
+- content_for(:title) do
+  title 我阅读的
+.wechat-container.post-reader-page
+  - if @posts.blank?
+    .alert.alert-warning 暂无阅读
+  - else
+    .row
+      ul.list-unstyled
+        - @posts.each do |post|
+          li
+            .post-reader-header
+              .title
+                = link_to post.title, wechat_writer_post_path(post), data: { turbolinks: false }
+            .created-at.text-muted
+              | 阅读于 #{time_ago_in_words(post.created_at)}前
+      .wechat-paginate-container.text-center

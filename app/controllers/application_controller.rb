@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :user_signed_in?
+  helper_method :wechat?
 
   private
   def current_user
@@ -13,12 +14,13 @@ class ApplicationController < ActionController::Base
     return true if current_user
   end
 
-  # def authenticate_user!
-  #   if wechat? && ( current_user.blank? || current_user.wechat_openid.blank? )
-  #     logout
-  #     redirect_to '/auth/wechat'
-  #     return
-  #   end
+  def authenticate_user!
+    if wechat? && current_user.blank?
+      logout
+      redirect_to '/auth/wechat'
+      return
+    end
+  end
   #
   #   if ! wechat? && ( current_user.blank? || current_user.open_wechat_openid.blank? )
   #     logout
@@ -33,6 +35,17 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
+  def authenticate_admin!
+    if !current_user
+      redirect_to root_path, :alert => '请先登录'
+      return
+    end
+
+    if !current_user.admin?
+      redirect_to root_path, :alert => '没有权限'
+    end
+  end
+
   def login_as(user)
     session[:user_id] = user.id
     cookies.signed[:user_id] = user.id
@@ -41,6 +54,10 @@ class ApplicationController < ActionController::Base
   def logout
     session[:user_id] = nil
     cookies.signed[:user_id] = nil
+  end
+
+  def wechat?
+    browser.wechat?
   end
 
 end

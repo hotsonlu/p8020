@@ -326,6 +326,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  browser
   browser_warrior
   byebug
   capybara

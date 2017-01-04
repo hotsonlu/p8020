@@ -1,0 +1,18 @@
+- if flash.present?
+  .top-alert
+    - flash.each do |name, msg|
+      - if msg.is_a?(String)
+        - case name.to_s
+        - when "notice"
+          - t = "success"
+        - when "info"
+          - t = "info"
+        - when "warning"
+          - t = "warning"
+        - else
+          - t = "danger"
+        div[class="alert alert-#{t} alert-dismissible" role="alert"]
+          button.close[type="button" data-dismiss="alert" aria-hidden="true"]
+            span[aria-hidden="true"] &times;
+            span.sr-only Close
+          == msg

@@ -1,0 +1,30 @@
+- content_for :head do
+  meta name="turbolinks-cache-control" content="no-cache"
+= simple_form_for [:wechat_writer, @post] do |f|
+  = f.input :title, input_html: { 'autofocus' => true }
+  = f.input :summary
+  
+  p.summary-counter-container.text-muted
+    ' 已输入
+    span.counter data-min-counter="#{Post::MAX_SUMMARY_LENGTH}" 0
+    '
+    | 字,
+    span.total
+      '
+      | 最多不超过 #{Post::MAX_SUMMARY_LENGTH} 字
+  - if @post.new_record?
+    = f.input :content, input_html: { 'data-autosave' => 'new_post' }
+     
+  - else
+    = f.input :content
+  p.content-counter-container.text-muted
+    ' 已输入
+    span.counter data-min-counter="#{Post::MIN_CONTENT_LENGTH}" 0
+    '
+    | 字,
+    span.total
+      '
+      | 最少不低于 #{Post::MIN_CONTENT_LENGTH} 字
+      
+    = f.button :submit, class: 'post-button'
+ 
